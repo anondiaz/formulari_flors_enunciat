@@ -1,6 +1,7 @@
 // Datos de trabajo
 
-const flores = [
+// Convertimos a formato array desde el string del localStorage y si no haya nada cargamos el contenido del array
+const flores = JSON.parse(localStorage.getItem("flores"))  || [
   { nombre: "rosa", color: "rojo", floracion: "primavera", stock: true },
   { nombre: "rosa", color: "blanco", floracion: "verano", stock: true },
   { nombre: "jazmín", color: "blanco", floracion: "verano", stock: false },
@@ -9,6 +10,7 @@ const flores = [
   { nombre: "clavel", color: "rojo", floracion: "verano", stock: true },
 ];
 
+// Esta función ordena las flores por orden alfabetico
 flores.sort((a, b) => {
   return a.nombre.localeCompare(b.nombre, "es-ES", { numeric: true });
 });
@@ -34,9 +36,19 @@ flores.sort((a, b) => {
 //   document.getElementById("ejercicio1").innerHTML += '<p>'+`Flor: ${flores[i].nombre}, de color ${flores[i].color}, florece en ${flores[i].floracion} y ${flores[i].stock} stock`+'</p>'
 // }
 
-//----------
+//---------- Profe ----------
+
+// Creamos una función para poder ejecutar la actualización del listado para los otros ejercicios
+
+// console.log(flores);
 
 function mostrarArray (id) {
+
+  // Añadimos la función de ordenación para volver a ordenar los elementos después del ejercicio 5
+  flores.sort((a, b) => {
+    return a.nombre.localeCompare(b.nombre, "es-ES", { numeric: true });
+  });
+
   const idHTML = document.getElementById(id)
   let htmlEj1 = "<ol>"
 
@@ -49,7 +61,7 @@ flores.forEach((flor) => {
     textStock = ""
   }
 
-  htmlEj1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textStock} tenemos stock </li>`
+  htmlEj1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion}, ${textStock} tenemos stock y cuesta ${flor.precio} €</li>`
   
 
 })
@@ -58,6 +70,7 @@ idHTML.innerHTML = htmlEj1
 
 }
 
+// Llamamos a la función para que se ejecute el ejercicio1
 mostrarArray('ejercicio1')
 
 
@@ -95,7 +108,7 @@ mostrarArray('ejercicio1')
 
 // ejercicio2.innerHTML = htmlEj2
 
-//----------
+//---------- Profe ----------
 
 const ejercicio2 = document.getElementById("ejercicio2");
 
@@ -162,7 +175,7 @@ ejercicio2.innerHTML = htmlEj2;
 
 // ejercicio3.innerHTML = htmlEj3
 
-//----------
+//---------- Profe ----------
 
 const ejercicio3 = document.getElementById("ejercicio3");
 mostrarArray('ejercicio3')
@@ -270,45 +283,45 @@ formEj3.addEventListener("change", () => {
 // })
 
 
-//----------
+//---------- Profe ----------
 
-// const ejercicio4 = document.querySelector('#ejercicio4')
+const ejercicio4 = document.querySelector('#ejercicio4')
 
-// const formEj4 = document.forms['formEj4']
+const formEj4 = document.forms['formEj4']
 
-// formEj4.addEventListener('submit', (e) => {
-//   ejercicio4.textContent = ""
+formEj4.addEventListener('submit', (e) => {
+  ejercicio4.textContent = ""
 
-// e.preventDefault()
+e.preventDefault()
 
-// let peticion = formEj4['buscador'].value.trim()
-// if (peticion.length == 0) {
-//   ejercicio4.textContent = "Hay que incluir texto en la búsqueda"
-//   return
-// }
-// peticion = peticion.toLocaleLowerCase()
+let peticion = formEj4['buscador'].value.trim()
+if (peticion.length == 0) {
+  ejercicio4.textContent = "Hay que incluir texto en la búsqueda"
+  return
+}
+peticion = peticion.toLocaleLowerCase()
 
-// let noHayResultados = true
-// let htmlEj1 = "<ol>";
+let noHayResultados = true
+let htmlEj1 = "<ol>";
 
-// flores.forEach((flor) => {
-//   // console.log(flor["nombre"]);
+flores.forEach((flor) => {
+  // console.log(flor["nombre"]);
 
-//   if (flor.nombre == peticion || flor.color == peticion || flor.floracion == peticion) {
-//     let textStock = "no";
-//     if (flor.stock) {
-//       textStock = "";
-//     }  
-//     htmlEj1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textStock} tenemos stock</li>`;
-//     noHayResultados = false
-//   }
+  if (flor.nombre == peticion || flor.color == peticion || flor.floracion == peticion) {
+    let textStock = "no";
+    if (flor.stock) {
+      textStock = "";
+    }  
+    htmlEj1 += `<li>Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textStock} tenemos stock</li>`;
+    noHayResultados = false
+  }
  
-// });
+});
 
-// htmlEj1 += "</ol>";
-// ejercicio4.innerHTML = noHayResultados ? "No hay flor que cumpla las condiciones" : htmlEj1;
+htmlEj1 += "</ol>";
+ejercicio4.innerHTML = noHayResultados ? "No hay flor que cumpla las condiciones" : htmlEj1;
 
-// })
+})
 
 // ==============================================================================
 // EJERCICIO 5
@@ -321,21 +334,36 @@ formEj3.addEventListener("change", () => {
 
 //---------- Mio ----------
 
-const ejercicio5 = document.getElementById("ejercicio5")
-const formEj5 = document.forms["myFormEj5"]
-const objetoFlor = {}
+// const ejercicio5 = document.getElementById("ejercicio5")
+// const formEj5 = document.forms["myFormEj5"]
+// const objetoFlor = {}
 
-formEj5.addEventListener("change", () => { 
+// formEj5.addEventListener("change", () => { 
 
-  console.log(ejercicio5.getElementById("nombre"));
+//   console.log(ejercicio5.getElementById("nombre"));
+
+// })
 
 
+//---------- Profe ----------
+const formEj5 = document.forms['formEj5']
+
+formEj5.addEventListener('submit', (e) => {
+  e.preventDefault()
+  let nombre = formEj5['nombreEj5'].value
+  let color = formEj5['colorEj5'].value
+  let floracion = formEj5['floracionEj5'].value
+  let stock = formEj5['stock'].value
+  // console.log(nombre, color, floracion, stock);
+
+  let objetoFlor = {nombre, color, floracion, stock}
+  // console.log(objetoFlor);
+  flores.push(objetoFlor)
+
+  mostrarArray("ejercicio1")
+
+  localStorage.setItem("flores", JSON.stringify(flores))
 })
-
-
-
-//----------
-
 
 // ============================================================================== 
 /* E X T R A S */
@@ -354,7 +382,75 @@ formEj5.addEventListener("change", () => {
 
 //---------- Mio ----------
 
-//----------
+// Generamos un array de flores y precios según la lista anterior
+const preciosFlores  = [
+  { nombreflor: "rosa rojo", precio: 8.00},
+  { nombreflor: "rosa blanco", precio: 10.00},
+  { nombreflor: "jazmín blanco", precio: 12.00},
+  { nombreflor: "crisantemo blanco", precio: 5.00},
+  { nombreflor: "cerezo blanco", precio: 25.00},
+  { nombreflor: "cyclamen rojo", precio: 4.50}  
+]
+
+// Buscamos todas las flores del listado principal
+flores.forEach((flor) => {
+  // console.log(flor["nombre"]);
+  // console.log(flor["color"]);
+  // console.log(flor["floracion"]);
+  // console.log(flor["stock"]);
+  // Generamos la claveFlor para poder comparar flores y colores
+  let claveFlor = flor["nombre"] + " " + flor["color"]
+  // Asignamos un valor al nuevo campo precio de cada flor
+  flor.precio = parseFloat(0.00).toFixed(2)  
+  // Buscamos las coincidencias de las flores del listado principal con el array de precios para actualizar precios
+  preciosFlores.forEach((nombreF) => {
+    // console.log(claveFlor);
+    // console.log(nombreF["nombreflor"]);
+    if (claveFlor == nombreF["nombreflor"]) {
+    // console.log(nombreF["nombreflor"]);
+    flor.precio = parseFloat(nombreF["precio"]).toFixed(2)  
+    // console.log(nombreF["nombreflor"], flor.precio);  
+    }
+  })
+// console.log(claveFlor);
+// console.log(flores);
+})
+
+
+//Ahora vamos a crear el funcionamiento del formulario para actualizar los precios
+// Obtenemos el formulario
+const formEj6 = document.forms['formEj6']
+// Obtenemos el select y el input
+const florSeleccionada = document.getElementById("floreslista")
+let precio = document.getElementById("precio")
+// console.log(precio);
+// console.log(florSeleccionada);
+let htmlEj6 = florSeleccionada.innerHTML
+flores.forEach((flor) => {
+  // console.log(flor["nombre"]);
+  // console.log(flor["color"]);
+  // console.log(flor["floracion"]);
+   htmlEj6 += `<option value="${flor.nombre} ${flor.color}">Flor: ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y cuesta: ${flor.precio}</option>`
+  //  console.log(htmlEj6);
+})
+florSeleccionada.innerHTML = htmlEj6
+
+formEj6.addEventListener('change', () => {
+  let florSelList = florSeleccionada.value
+  console.log(florSelList)
+  document.getElementById("precio") = florSelList
+  console.log(precio);
+})
+
+formEj6.addEventListener('submit', () => {
+  
+  florSeleccionada.value
+})
+
+mostrarArray("ejercicio1")
+
+
+//---------- Profe ----------
 
 // ==============================================================================
 // EJERCICIO 7
@@ -364,7 +460,7 @@ formEj5.addEventListener("change", () => {
 
 //---------- Mio ----------
 
-//----------
+//---------- Profe ----------
 
 // ==============================================================================
 // EJERCICIO 8
@@ -375,4 +471,4 @@ formEj5.addEventListener("change", () => {
 
 //---------- Mio ----------
 
-//----------
+//---------- Profe ----------

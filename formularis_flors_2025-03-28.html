@@ -32,7 +32,6 @@
               <label
                 ><input
                   type="radio"
-                  name="color"
                   value="cualquiera"
                   checked
                 />Cualquiera</label
@@ -112,45 +111,98 @@
 
       <section>
         <h2>Ejercicio 4</h2>
-        <p>Seleccionar flor por nombre</p>
+        <h3>Seleccionar flor por nombre</h3>
 
-        <div id="ejercicio4"></div>
+        <div id="ejercicio4">
+          <form name="formEj4">
+            <label for="buscador">Indica el concepto a buscar </label>
+            <input type="text" name="buscador" id="buscador" />
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
       </section>
 
       <section>
         <h2>Ejercicio 5</h2>
-        <p>Añadir flor a la lista</p>
+        <h3>Añadir flor a la lista</h3>
 
         <div id="ejercicio5">
-          <form action="#ejercicio5" id="myFormEj5" name="myFormEj5">
-            <fieldset>
-              <legend>Añade una flor al inventario : </legend>
-              <div>
-                <label>
-                  Nombre de la flor : <input type="text" name="nombre"
-                /></label>
-              </div>
-              <div>
-                <label> Color : <input type="text" name="color" /></label>
-              </div>
-              <div>
-                <label>
-                  Epoca de floración : <input type="text" name="floracion"
-                /></label>
-              </div>
-              <div>
-                <label
-                  >Hay stock 
-                  <input type="checkbox" name="stock" id="stock" />
-                </label>
-              </div>
-              <div>
-                <button type="submit" value="Guardar" >Añadir flor</button>
-              </div>
-                <button type="reset" value="Borrar" >Borrar formulario </button>
-              </div>
-            </fieldset>
+          <form name="formEj5">
+            <br />
+            <div>
+              <label for="nombreEj5">Nombre de la flor</label>
+              <input type="text" name="nombreEj5" id="nombreEj5" />
+            </div>
+            <br />
+            <div>
+              <label for="colorEj5">Color de la flor</label>
+              <input type="text" name="colorEj5" id="colorEj5" />
+            </div>
+            <br />
+            <div>
+              <label for="floracionEj5">Estación :</label>
+              <select name="floracionEj5" id="floracionEj5">
+                <option value="primavera" selected>Primavera</option>
+                <option value="verano">Verano</option>
+                <option value="otoño">Otoño</option>
+                <option value="invierno">Invierno</option>
+              </select>
+            </div>
+            <br />
+            <div>
+              <input
+                type="radio"
+                name="stock"
+                value="true"
+                id="trueEj5"
+                checked
+              />
+              <label for="trueEj5"> Con stock</label>
+              <input type="radio" name="stock" value="false" id="falseEj5" />
+              <label for="falseEj5"> Sin stock</label>
+            </div>
+            <br />
+            <div>
+              <button type="submit">Añadir flor</button>
+              <button type="reset">Borrar formulario</button>
+            </div>
           </form>
+        </div>
+      </section>
+      <section>
+        <h2>Ejercicio 6</h2>
+        <h3>Añadir precios a las flores</h3>
+        <div id="ejercicio6">
+          <form name="formEj6">
+            <br />
+            <div>
+            <label for="floreslista">Flor :</label>
+              <select name="floreslista" id="floreslista">
+                <option value="florseleccionada" selected>Selecciona una flor</option>
+              </select>
+            </div>
+            <br />
+              <div>
+                <label for="precio">Precio :</label>
+                <input type="number" name="precio" id="precio" min="0.00" value="0.00"/>
+             </div>
+             <br>
+             <div>
+              <button type="submit" id="guardar">Guardar</button>
+              <button type="reset" id="cancelar">Cancelar</button>
+            </div>
+        </div>
+      </section>
+      <section>
+        <h2>Ejercicio 7</h2>
+        <h3>Eliminar flores de la lista</h3>
+        <div id="ejercicio7">
+        </div>
+      </section>
+      <section>
+        <h2>Ejercicio 8</h2>
+        <h3>Editar flores de la lista</h3>
+        <div id="ejercicio8">
         </div>
       </section>
     </main>
